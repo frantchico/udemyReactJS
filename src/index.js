@@ -111,35 +111,44 @@ class AClass{
   }
 }*/
 
-class AClass{
-  constructor(){
-   this._name = "ES6";
+class BaseClass {
+  constructor() {
+    this.familySecret = "Be yourself.";
+  }
+}
+class AClass extends BaseClass {
+  constructor() {
+    super();
+    this._name = "ES6";
   }
 
-  get name(){
+  get name() {
     return `${this._name}`;
   }
 
-  set name(value){
+  set name(value) {
     this._name = value;
   }
-  sayHello(){
+  sayHello() {
     let hiWords = ["hey ", "hi ", "hello "];
-    hiWords = hiWords.filter(x => x.indexOf("he") == 0)
-    .map(x => x.replace(" ", "o "));
+    hiWords = hiWords
+      .filter(x => x.indexOf("he") == 0)
+      .map(x => x.replace(" ", "o "));
 
     let hiPhrase = "";
 
-    for(let hiWord of hiWords){
+    for (let hiWord of hiWords) {
       hiPhrase += hiWord;
     }
 
-    let great = () => {return `${hiPhrase}, I am ${this.name}`}
-   return great();
+    let great = () => {
+      return `${hiPhrase}, I am ${this.name}. ${this.familySecret}`;
+    };
+    return great();
   }
 }
 
- const instance = new AClass();
+const instance = new AClass();
 instance.name = "Francisco";
 
 document.getElementById("app").innerHTML = instance.sayHello();
